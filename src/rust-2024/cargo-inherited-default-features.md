@@ -8,9 +8,7 @@
 
 [Workspace inheritance] allows you to specify dependencies in one place (the workspace), and then to refer to those workspace dependencies from within a package.
 
-In editions earlier than 2024, `default-features = false` is ignored when the workspace dependency specifies `default-features = true` (or does not specify `default-features`).
-The original 2024 Edition behavior in Rust 1.85 through 1.98 rejected this combination.
-Starting with Rust 1.99, a 2024 Edition package's `default-features` setting overrides the workspace setting.
+In editions earlier than 2024, `default-features = false` is ignored when the workspace dependency specifies `default-features = true` (or does not specify `default-features`). The original 2024 Edition behavior in Rust 1.85 through 1.98 rejected this combination. Starting with Rust 1.99, a 2024 Edition package's `default-features` setting overrides the workspace setting.
 
 For example, with a workspace that specifies:
 
@@ -35,12 +33,9 @@ Just beware that if you build multiple workspace members at the same time, the f
 
 ## Migration
 
-When using `cargo fix --edition`, Cargo will automatically remove `default-features = false` in this situation.
-Without this fix, changing to the 2024 Edition would produce an error with Rust 1.85 through 1.98 and would disable default features with Rust 1.99 or newer.
+When using `cargo fix --edition`, Cargo will automatically remove `default-features = false` in this situation. Without this fix, changing to the 2024 Edition would produce an error with Rust 1.85 through 1.98 and would disable default features with Rust 1.99 or newer.
 
-If you want to use the new behavior, add the setting back after changing to the 2024 Edition.
-If you prefer to migrate manually while preserving the previous behavior, remove the corresponding entries.
-Previous editions should display something like:
+If you want to use the new behavior, add the setting back after changing to the 2024 Edition. If you prefer to migrate manually while preserving the previous behavior, remove the corresponding entries. Previous editions should display something like:
 
 ```text
 warning: /home/project/Cargo.toml: `default-features` is ignored for regex,
